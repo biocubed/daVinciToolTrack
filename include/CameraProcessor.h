@@ -43,8 +43,8 @@ signals:
 	void updateCameraImage(QImage);
 	void dispFrameRate(QString);
 
-	public slots:
-		void process();
+public slots:
+	void process();
 		
 protected:
 	QTimer timer_;

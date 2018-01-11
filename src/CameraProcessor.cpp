@@ -183,7 +183,7 @@ void CameraProcessor::process()
 		double fps = time_count.size()/td;
 		std::stringstream str;
 		str << setprecision(4) << fps;
-		Q_EMIT dispFrameRate("Processing FPS: " + QString::number(fps));
+		emit dispFrameRate("Processing FPS: " + QString::number(fps));
 		cv::putText(camera_image_local, "FPS: "+str.str(), cv::Point(5,15), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 0) );
 	}
 #endif
@@ -198,13 +198,13 @@ void CameraProcessor::process()
 	{
 		time_count.pop_front();
 		double td = difftime(time_count.back(), time_count.front());
-		Q_EMIT dispFrameRate("Processing FPS: " + QString::number(100.0/td));
+		emit dispFrameRate("Processing FPS: " + QString::number(100.0/td));
 	}
 #endif
 
 	QImage qtemp_camera = cvtCvMat2QImage(camera_image_local);
 
-	Q_EMIT updateCameraImage(qtemp_camera);
+	emit updateCameraImage(qtemp_camera);
 }
 
 bool CameraProcessor::process_camera(const std::vector<cv::Point3f>& psm1_allKeypoints,

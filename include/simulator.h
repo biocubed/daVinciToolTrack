@@ -387,7 +387,8 @@ private:
 	/************************************************************************/
 	/* Signals and slots                                                    */
 	/************************************************************************/
-Q_SIGNALS:
+// Q_SIGNALS:
+signals:
 	void updateRenderImage(QImage);
 	void updateCameraImage(QImage);
 	void dispFrameRate(QString);

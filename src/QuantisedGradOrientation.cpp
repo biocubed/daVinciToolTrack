@@ -1,5 +1,5 @@
 #include "QuantisedGradOrientation.h"
-#include <opencv2/core/internal.hpp>
+// #include <opencv2/core/internal.hpp>
 
 #define  SQR(a) ((a) * (a))
 

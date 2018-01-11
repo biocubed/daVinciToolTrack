@@ -313,9 +313,9 @@ void Simulator::setupGUI(GraphicalUserInterface *g)
 	// Connect to GUI
 	QObject::connect(this,  SIGNAL(updateRenderImage(QImage)), gui_, SLOT(updateRenderImage(QImage)));
 	QObject::connect(this,  SIGNAL(updateCameraImage(QImage)), gui_, SLOT(updateCameraImage(QImage)));
-	QObject::connect(this, SIGNAL(dispFrameRate(QString)), gui_, SLOT(setInfo1(QString)));
+	// QObject::connect(this, SIGNAL(dispFrameRate(QString)), gui_, SLOT(setInfo1(QString)));
 	QObject::connect(cam_proc,  SIGNAL(updateCameraImage(QImage)), gui_, SLOT(updateCameraImage(QImage)));
-	QObject::connect(cam_proc, SIGNAL(dispFrameRate(QString)), gui_, SLOT(setInfo2(QString)));
+	// QObject::connect(cam_proc, SIGNAL(dispFrameRate(QString)), gui_, SLOT(setInfo2(QString)));
 }
 
 void Simulator::setup_record()
@@ -644,7 +644,7 @@ void Simulator::virtual_rendering_thread()
 		draw_pts(render_img_flip_cv, psm2_projectedPoints, psm2_projectedKeypoints, psm2_visible);
 
 		QImage qtemp = cvtCvMat2QImage(render_img_flip_cv);
-		Q_EMIT updateRenderImage(qtemp);
+		emit updateRenderImage(qtemp);
 	}
 
 
@@ -657,7 +657,7 @@ void Simulator::virtual_rendering_thread()
 	{
 		time_count.pop_front();
 		double td = time_diff(&time_count.front(), &time_count.back());
-		Q_EMIT dispFrameRate("Rendering FPS: " + QString::number(50.0/td));
+		emit dispFrameRate("Rendering FPS: " + QString::number(50.0/td));
 	}
 #endif
 #ifdef _WIN32
@@ -668,7 +668,7 @@ void Simulator::virtual_rendering_thread()
 	{
 		time_count.pop_front();
 		double td = difftime(time_count.back(), time_count.front());
-		Q_EMIT dispFrameRate("Rendering FPS: " + QString::number(100.0/td));
+		emit dispFrameRate("Rendering FPS: " + QString::number(100.0/td));
 	}
 #endif
 

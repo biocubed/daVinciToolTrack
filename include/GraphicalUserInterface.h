@@ -36,7 +36,7 @@ public:
 
     GraphicalUserInterface(std::string config_path);
 
-Q_SIGNALS:
+// Q_SIGNALS:
 
 
 public slots:
@@ -47,7 +47,7 @@ public slots:
 
     void updateCameraImage(QImage);
 
-	void setInfo1(QString message);
+    void setInfo1(QString message);
 
     void setInfo2(QString message);
 
